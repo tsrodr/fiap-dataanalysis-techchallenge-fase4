@@ -36,12 +36,7 @@ class SparkPostgres:
             "driver": "org.postgresql.Driver"
         }
 
-    def clear_table(self, schema, table):
-        query = f"TRUNCATE TABLE {schema}.{table}"
-        self.spark.sql(query)
-
     def save_to_postgres(self, df, schema, table):
-        self.clear_table(schema, table)
         # Adicionar a coluna 'data processamento' com a data atual
         df = df.withColumn('dt_pst', current_date())
         df.write.jdbc(

@@ -28,8 +28,8 @@ class Processar:
         modelo_arima = self.train_model(treino)
         self.save_model(modelo_arima, 'modelo/auto_arima.joblib')
         modelo_carregado = self.load_model('modelo/auto_arima.joblib')
-        forecast = self.make_forecast(modelo_carregado, h=30)
-        self.save_forecast(forecast, './output/sor/forecast2.csv')
+        forecast = self.make_forecast(modelo_carregado, h=10)
+        self.save_forecast(forecast)
 
     def ipeadata_run(self):
         table_ipea = next(item for item in self.org_table if item['name'] == "IpeaData")
@@ -39,11 +39,12 @@ class Processar:
             df_spark = df_spark.withColumn("valdata", to_date(col("valdata")))
             df_spark = df_spark.withColumn("valvalor", col("valvalor").cast("float"))
             self.spark_postgres.save_to_postgres(df_spark, self.schema, table_ipea['table'])
+            df.to_csv(table_ipea['file'], index=False)
             return df
         return None
 
     def preprocess_data(self, df):
-        df = df.drop(columns=["sercodigo", "tercodigo", "nivnome", "dt_pst"])
+        df = df.drop(columns=["sercodigo", "tercodigo", "nivnome"])
         df = df.rename(columns={"valdata": "data", "valvalor": "preco"})
         df = df.dropna(subset=["preco", "data"])
         df = df.sort_values(by="data", ascending=False)
@@ -80,8 +81,9 @@ class Processar:
         forecast['preco_previsto_brent'] = forecast['preco_previsto_brent'].apply(lambda x: round(x, 2))
         return forecast
 
-    def save_forecast(self, df, filepath):
+    def save_forecast(self, df):
         table_forecast = next(item for item in self.org_table if item['name'] == "Forecast")
+        df.to_csv(table_forecast['file'], index=False)
         df_spark = self.spark.createDataFrame(df)
         self.spark_postgres.save_to_postgres(df_spark, self.schema, table_forecast['table'])
 
