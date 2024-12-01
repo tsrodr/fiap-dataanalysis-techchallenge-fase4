@@ -1,13 +1,3 @@
-# fiap-dataanalysis-techchallenge-fase4
-
-# Link para o Aplicativo Streamlit
-
-Este é o link para acessar a aplicação completa hospedada no Streamlit Cloud:
-
-[Link para o Streamlit App](https://fiap-dataanalysis-techchallenge-fase3-vxsreneykzjljk2h853ay3.streamlit.app/)
-
-
-
 # Projeto: Dashboard e Forecasting do Preço do Petróleo Brent
 
 ## Descrição Geral
@@ -47,6 +37,27 @@ Um plano foi elaborado para garantir a operação contínua do modelo e do dashb
   - Processamento em **Apache Spark** para manipulação e preparação de dados em larga escala.
 - **Automação**: Processos automatizados para extração, limpeza e carregamento de dados.
 
+---
+
+## Atualização dos Dados
+
+A atualização dos dados e do modelo preditivo é simples e pode ser feita executando o script principal do projeto. Basta rodar o arquivo `main.py`, que realizará os seguintes passos:
+
+1. **Web Scraping**:
+   - Coleta os dados mais recentes do preço do petróleo Brent a partir da fonte oficial.
+2. **Limpeza e Preparação**:
+   - Processa os dados coletados, preparando-os para análise e modelagem.
+3. **Treinamento do Modelo**:
+   - Atualiza o modelo preditivo com os dados mais recentes.
+4. **Carga no Banco de Dados**:
+   - Insere os novos dados no banco de dados PostgreSQL hospedado na AWS.
+5. **Geração de Arquivos**:
+   - Exporta os arquivos necessários para o Power BI.
+
+Para executar a atualização, utilize o seguinte comando no terminal:
+```bash
+python main.py
+```
 ---
 
 ## Benefícios do Projeto
