@@ -45,14 +45,20 @@ A atualização dos dados e do modelo preditivo é simples e pode ser feita exec
 
 1. **Web Scraping**:
    - Coleta os dados mais recentes do preço do petróleo Brent a partir da fonte oficial.
+
 2. **Limpeza e Preparação**:
    - Processa os dados coletados, preparando-os para análise e modelagem.
+
 3. **Treinamento do Modelo**:
    - Atualiza o modelo preditivo com os dados mais recentes.
+
 4. **Carga no Banco de Dados**:
    - Insere os novos dados no banco de dados PostgreSQL hospedado na AWS.
-5. **Geração de Arquivos**:
-   - Exporta os arquivos necessários para o Power BI.
+
+5. **Conexão com o Banco pelo Power BI**:
+   - O Power BI se conecta diretamente ao banco de dados **PostgreSQL** hospedado na **AWS RDS** para buscar os dados mais recentes.
+   - Isso elimina a necessidade de exportação manual de arquivos.
+
 
 Para executar a atualização, utilize o seguinte comando no terminal:
 ```bash
