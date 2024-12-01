@@ -7,7 +7,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-plotly_conf = {'template': 'ggplot2', 'color_sequence': ['#3d183d']}
 
 
 def main():
@@ -113,13 +112,43 @@ def show_negocio():
 
 
 def show_historico(df_ipea):
+    # Convertendo a coluna 'data' para o formato datetime e removendo o fuso horário, se necessário
+    if not pd.api.types.is_datetime64_any_dtype(df_ipea['data']):
+        df_ipea['data'] = pd.to_datetime(df_ipea['data'], utc=True).dt.tz_convert(None)
 
+    # Convertendo a coluna de data para datetime.date para compatibilidade
+    df_ipea['data'] = df_ipea['data'].dt.date
+
+    # Adicionando título para os filtros
+    st.subheader("Filtro de Datas")
+
+    # Criando uma linha com duas colunas para os filtros
+    col1, col2 = st.columns(2)
+    with col1:
+        start_date = st.date_input("Data inicial", df_ipea['data'].min())
+    with col2:
+        end_date = st.date_input("Data final", df_ipea['data'].max())
+
+    # Garantindo que a data final seja maior ou igual à data inicial
+    if start_date > end_date:
+        st.error("A data inicial não pode ser maior que a data final.")
+        return
+
+    # Filtrando o dataframe com base no intervalo de datas
+    df_filtered = df_ipea[(df_ipea['data'] >= start_date) & (df_ipea['data'] <= end_date)]
+
+    # Verificando se o dataframe filtrado contém dados
+    if df_filtered.empty:
+        st.warning("Nenhum dado disponível para o intervalo de datas selecionado.")
+        return
+
+    # Criando o gráfico
     fig = px.line(
-        data_frame=df_ipea,
-        x=df_ipea.data,
-        y=df_ipea.preco,
-        template=plotly_conf['template'],
-        color_discrete_sequence=plotly_conf['color_sequence'],
+        data_frame=df_filtered,
+        x='data',
+        y='preco',
+        template='plotly_white',
+        color_discrete_sequence=['#1f77b4'],
         labels={
             'preco': 'Preço (US$)',
             'data': 'Data'
@@ -131,6 +160,7 @@ def show_historico(df_ipea):
         yaxis_title='Preço (US$)'
     )
 
+    # Mostrando o gráfico na interface
     st.plotly_chart(fig, use_container_width=True)
     st.markdown(
         '''
@@ -197,8 +227,8 @@ def show_previsao(df_forecast):
         data_frame=df_forecast,
         x=df_forecast.data,
         y=df_forecast.preco_previsto_brent,
-        template=plotly_conf['template'],
-        color_discrete_sequence=plotly_conf['color_sequence'],
+        template='plotly_white',
+        color_discrete_sequence=['#1f77b4'],
         labels={
             'preco_previsto_brent':'Preço previsto (US$)',
             'data':'Data'
