@@ -100,9 +100,9 @@ python main.py
 ## Acesso às Ferramentas
 
 1. **Dashboard Interativo**:
-   - Disponível em [Streamlit](#insira-o-link-aqui).
+   - Disponível em [Streamlit](https://fiap-dataanalysis-techchallenge-fase4-eljrguulqced7zaekbfscl.streamlit.app).
 2. **Dashboard Complementar**:
-   - Disponível em [Power BI](#insira-o-link-aqui).
+   - Disponível em [Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGNlYjNjMzYtODNkNC00ZDk4LTkwYzItZGJiODZiMTAwNzVhIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9).
 
 ---
 
