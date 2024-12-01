@@ -10,11 +10,11 @@ st.set_page_config(
 
 
 def main():
-    df_ipea = pd.read_csv('./output/sor/ipeadata.csv')
+    df_ipea = pd.read_csv('output/sor/ipeadata.csv')
     df_ipea = df_ipea.rename(columns={'valdata': 'data', 'valvalor': 'preco'})
     df_ipea = df_ipea[df_ipea['data'] >= '2005-01-01']
     df_ipea['data'] = pd.to_datetime(df_ipea['data'])
-    df_forecast = pd.read_csv('./output/sor/forecast.csv')
+    df_forecast = pd.read_csv('output/sor/forecast.csv')
     st.sidebar.title("Menu de Navegação")
 
     pages = [
