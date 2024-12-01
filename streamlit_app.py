@@ -261,12 +261,12 @@ def show_powerbi():
     st.title("Dashboard Integrado do Power BI")
 
     # URL do relatório do Power BI (substitua pela URL do seu relatório embed)
-    power_bi_url = "https://app.powerbi.com/view?r=eyJrIjoiYjcxNGZlNmYtMDI4OS00NmJiLTk3Y2EtMWMyZWEyZWJmMTA4IiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9"
+    power_bi_url = "https://app.powerbi.com/view?r=eyJrIjoiNGNlYjNjMzYtODNkNC00ZDk4LTkwYzItZGJiODZiMTAwNzVhIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9"
 
     # Embeber o relatório usando um iframe
     st.components.v1.html(
         f"""
-        <iframe width="100%" height="900" src="{power_bi_url}" frameborder="0" allowFullScreen="true"></iframe>
+        <iframe width="100%" height="800" src="{power_bi_url}" frameborder="0" allowFullScreen="true"></iframe>
         """,
         height=900,
     )
