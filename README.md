@@ -102,7 +102,7 @@ python main.py
 1. **Dashboard Interativo**:
    - Disponível em [Streamlit](https://fiap-dataanalysis-techchallenge-fase4-eljrguulqced7zaekbfscl.streamlit.app).
 2. **Dashboard Complementar**:
-   - Disponível em [Power BI](https://app.powerbi.com/view?r=eyJrIjoiNGNlYjNjMzYtODNkNC00ZDk4LTkwYzItZGJiODZiMTAwNzVhIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9).
+   - Disponível em [Power BI](https://app.powerbi.com/view?r=eyJrIjoiYTEwZmNlMGYtZWNiOS00N2EyLWFlNzQtZWFjOWNkMGJhMjg2IiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9).
 
 ---
 
